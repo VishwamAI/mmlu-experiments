@@ -1,5 +1,11 @@
 import pytest
+import os
 from mmlu.human_agent import HumanAgent
+
+# Ensure the Hugging Face token is set in the environment
+hf_token = os.getenv("Hugging_Face_Hugging_Face")
+if not hf_token:
+    raise EnvironmentError("Hugging Face token is not set in the environment.")
 
 @pytest.fixture
 def human_agent():
