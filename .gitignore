@@ -115,3 +115,7 @@ dmypy.json
 
 # virtual environment
 venv/
+
+# Memory profiling files
+*.png
+*.dat
