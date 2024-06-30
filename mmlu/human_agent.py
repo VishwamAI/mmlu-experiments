@@ -7,11 +7,12 @@ class HumanAgent:
         hf_token = os.getenv("Hugging_Face_Hugging_Face")
 
         # Initialize the pipelines for various tasks with the token
-        self.text_generator = pipeline("text-generation", model="gpt-2", use_auth_token=hf_token)
+        self.text_generator = pipeline("text-generation", model="google/gemma-2-9b", use_auth_token=hf_token)
         self.text_classifier = pipeline("sentiment-analysis", use_auth_token=hf_token)
         self.question_answerer = pipeline("question-answering", use_auth_token=hf_token)
         self.summarizer = pipeline("summarization", use_auth_token=hf_token)
         self.translator = pipeline("translation_en_to_fr", use_auth_token=hf_token)
+        self.speech_recognizer = pipeline("automatic-speech-recognition", model="openai/whisper-large-v3", use_auth_token=hf_token)
 
     def generate_text(self, prompt, max_length=50):
         """
@@ -74,3 +75,15 @@ class HumanAgent:
         str: The translated text.
         """
         return self.translator(text)[0]['translation_text']
+
+    def transcribe_audio(self, audio_path):
+        """
+        Transcribes audio using the speech recognition pipeline.
+
+        Parameters:
+        audio_path (str): The path to the audio file to transcribe.
+
+        Returns:
+        str: The transcription of the audio.
+        """
+        return self.speech_recognizer(audio_path)[0]['text']
