@@ -1,0 +1,78 @@
+graph TD
+    subgraph Deployment
+        A[MMLU Cloud]
+    end
+
+    subgraph Components
+        B[Integrations]
+        B1[Data Loaders]
+        B2[API Connectors]
+        B3[Output Formatters]
+    end
+
+    subgraph Architecture
+        C[MMLU Core]
+        C1[Task Modules]
+        C2[Model Interfaces]
+        C3[Prompt Templates]
+        C4[Evaluation Metrics]
+
+        D[MMLU Graph]
+        D1[Workflow Builders]
+        D2[Task Chaining]
+        D3[Multi-step Reasoning]
+    end
+
+    subgraph MMLU Smith
+        E[Visual Debugger]
+        F[Task Playground]
+        G[Prompt Version Control]
+        H[Performance Analytics]
+        I[A/B Testing Tools]
+    end
+
+    %% Connections
+    A -->|Deploys| C
+    A -->|Deploys| D
+    B -->|Feeds data| C
+    B -->|Provides APIs| D
+    C -->|Builds on| B
+    D -->|Utilizes| C
+    C --> C1
+    C --> C2
+    C --> C3
+    C --> C4
+    D --> D1
+    D --> D2
+    D --> D3
+    B --> B1
+    B --> B2
+    B --> B3
+    E -->|Debugs| C
+    E -->|Debugs| D
+    F -->|Tests| C
+    G -->|Manages| C3
+    H -->|Analyzes| C
+    H -->|Analyzes| D
+    I -->|Tests| C
+    I -->|Tests| D
+
+    %% Styles
+    classDef commercial fill:#e6e6fa,stroke:#333,stroke-width:2px;
+    classDef oss fill:#5f9ea0,stroke:#333,stroke-width:2px;
+    classDef tool fill:#f0f8ff,stroke:#333,stroke-width:1px;
+
+    class A,E,F,G,H,I commercial;
+    class B,C,D oss;
+    class B1,B2,B3,C1,C2,C3,C4,D1,D2,D3 tool;
+
+    %% Labels
+    A:::commercial
+    B:::oss
+    C:::oss
+    D:::oss
+    E:::commercial
+    F:::commercial
+    G:::commercial
+    H:::commercial
+    I:::commercial
