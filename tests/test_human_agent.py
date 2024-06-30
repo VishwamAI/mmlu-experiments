@@ -43,7 +43,7 @@ def test_classify_text(mock_pipeline, human_agent):
 @patch('mmlu.human_agent.pipeline')
 def test_answer_question(mock_pipeline, human_agent):
     mock_model = MagicMock()
-    mock_model.return_value = [{"answer": "Paris"}]
+    mock_model.return_value = {"answer": "Paris"}
     mock_pipeline.return_value = mock_model
 
     question = "What is the capital of France?"
