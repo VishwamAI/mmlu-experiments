@@ -7,7 +7,7 @@ class HumanAgent:
         hf_token = os.getenv("Hugging_Face_Hugging_Face")
 
         # Initialize the pipelines for various tasks with the token
-        self.text_generator = pipeline("text-generation", model="EleutherAI/gpt-j-6B", use_auth_token=hf_token)
+        self.text_generator = pipeline("text-generation", model="facebook/opt-1.3b", use_auth_token=hf_token)
         self.text_classifier = pipeline("sentiment-analysis", use_auth_token=hf_token)
         self.question_answerer = pipeline("question-answering", use_auth_token=hf_token)
         self.summarizer = pipeline("summarization", use_auth_token=hf_token)
