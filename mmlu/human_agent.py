@@ -4,15 +4,49 @@ import os
 class HumanAgent:
     def __init__(self):
         # Retrieve the Hugging Face token from the environment variable
-        hf_token = os.getenv("Hugging_Face_Hugging_Face")
+        self.hf_token = os.getenv("Hugging_Face_Hugging_Face")
+        self._text_generator = None
+        self._text_classifier = None
+        self._question_answerer = None
+        self._summarizer = None
+        self._translator = None
+        self._speech_recognizer = None
 
-        # Initialize the pipelines for various tasks with the token
-        self.text_generator = pipeline("text-generation", model="distilgpt2", use_auth_token=hf_token)
-        self.text_classifier = pipeline("sentiment-analysis", use_auth_token=hf_token)
-        self.question_answerer = pipeline("question-answering", use_auth_token=hf_token)
-        self.summarizer = pipeline("summarization", use_auth_token=hf_token)
-        self.translator = pipeline("translation_en_to_fr", use_auth_token=hf_token)
-        self.speech_recognizer = pipeline("automatic-speech-recognition", model="openai/whisper-large-v3", use_auth_token=hf_token)
+    @property
+    def text_generator(self):
+        if self._text_generator is None:
+            self._text_generator = pipeline("text-generation", model="distilgpt2", use_auth_token=self.hf_token)
+        return self._text_generator
+
+    @property
+    def text_classifier(self):
+        if self._text_classifier is None:
+            self._text_classifier = pipeline("sentiment-analysis", use_auth_token=self.hf_token)
+        return self._text_classifier
+
+    @property
+    def question_answerer(self):
+        if self._question_answerer is None:
+            self._question_answerer = pipeline("question-answering", use_auth_token=self.hf_token)
+        return self._question_answerer
+
+    @property
+    def summarizer(self):
+        if self._summarizer is None:
+            self._summarizer = pipeline("summarization", use_auth_token=self.hf_token)
+        return self._summarizer
+
+    @property
+    def translator(self):
+        if self._translator is None:
+            self._translator = pipeline("translation_en_to_fr", use_auth_token=self.hf_token)
+        return self._translator
+
+    @property
+    def speech_recognizer(self):
+        if self._speech_recognizer is None:
+            self._speech_recognizer = pipeline("automatic-speech-recognition", model="openai/whisper-large-v3", use_auth_token=self.hf_token)
+        return self._speech_recognizer
 
     def generate_text(self, prompt, max_length=50):
         """
