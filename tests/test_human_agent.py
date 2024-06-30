@@ -1,5 +1,10 @@
 import pytest
 import os
+import sys
+
+# Ensure the project root is in sys.path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from mmlu.human_agent import HumanAgent
 
 @pytest.fixture
