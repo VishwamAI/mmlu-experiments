@@ -4,7 +4,7 @@ import os
 class HumanAgent:
     def __init__(self):
         # Retrieve the Hugging Face token from the environment variable
-        hf_token = os.getenv("HUGGINGFACE_HUB_TOKEN")
+        hf_token = os.getenv("Hugging_Face_Hugging_Face")
 
         # Initialize the pipelines for various tasks with the token
         self.text_generator = pipeline("text-generation", model="gpt-2", use_auth_token=hf_token)
