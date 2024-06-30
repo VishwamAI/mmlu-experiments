@@ -6,11 +6,14 @@ setup(
     description="A library for MMLU functionalities",
     packages=find_packages(),
     install_requires=[
-        # List your dependencies here
+        "torch",
+        "transformers",
+        "pytest",
+        "flake8"
     ],
     author="Your Name",
     author_email="your.email@example.com",
-    url="https://github.com/yourusername/mmlu",
+    url="https://github.com/VishwamAI/mmlu-experiments",
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
